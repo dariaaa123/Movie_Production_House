@@ -1,0 +1,95 @@
+is_global = true
+build_property.TargetFramework = net9.0
+build_property.TargetFramework = net9.0
+build_property.TargetPlatformMinVersion = 
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = Tema1PS
+build_property.RootNamespace = Tema1PS
+build_property.ProjectDir = C:\Users\Daria\Desktop\PS\Tema1PS\Tema1PS\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.RazorLangVersion = 9.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = C:\Users\Daria\Desktop\PS\Tema1PS\Tema1PS
+build_property._RazorSourceGeneratorDebug = 
+build_property.EffectiveAnalysisLevelStyle = 9.0
+build_property.EnableCodeStyleSeverity = 
+
+[C:/Users/Daria/Desktop/PS/Tema1PS/Tema1PS/View/Components/App.razor]
+build_metadata.AdditionalFiles.TargetPath = 
+build_metadata.AdditionalFiles.TargetPath = Vmlld1xDb21wb25lbnRzXEFwcC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Daria/Desktop/PS/Tema1PS/Tema1PS/View/Components/Layout/MainLayout.razor]
+build_metadata.AdditionalFiles.TargetPath = 
+build_metadata.AdditionalFiles.TargetPath = Vmlld1xDb21wb25lbnRzXExheW91dFxNYWluTGF5b3V0LnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+build_metadata.AdditionalFiles.CssScope = b-91t26hb7t1
+
+[C:/Users/Daria/Desktop/PS/Tema1PS/Tema1PS/View/Components/Layout/NavMenu.razor]
+build_metadata.AdditionalFiles.TargetPath = 
+build_metadata.AdditionalFiles.TargetPath = Vmlld1xDb21wb25lbnRzXExheW91dFxOYXZNZW51LnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+build_metadata.AdditionalFiles.CssScope = b-rbo66ehvz9
+
+[C:/Users/Daria/Desktop/PS/Tema1PS/Tema1PS/View/Components/Pages/Employees.razor]
+build_metadata.AdditionalFiles.TargetPath = 
+build_metadata.AdditionalFiles.TargetPath = Vmlld1xDb21wb25lbnRzXFBhZ2VzXEVtcGxveWVlcy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Daria/Desktop/PS/Tema1PS/Tema1PS/View/Components/Pages/Error.razor]
+build_metadata.AdditionalFiles.TargetPath = 
+build_metadata.AdditionalFiles.TargetPath = Vmlld1xDb21wb25lbnRzXFBhZ2VzXEVycm9yLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Daria/Desktop/PS/Tema1PS/Tema1PS/View/Components/Pages/Home.razor]
+build_metadata.AdditionalFiles.TargetPath = 
+build_metadata.AdditionalFiles.TargetPath = Vmlld1xDb21wb25lbnRzXFBhZ2VzXEhvbWUucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Daria/Desktop/PS/Tema1PS/Tema1PS/View/Components/Pages/Movies.razor]
+build_metadata.AdditionalFiles.TargetPath = 
+build_metadata.AdditionalFiles.TargetPath = Vmlld1xDb21wb25lbnRzXFBhZ2VzXE1vdmllcy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Daria/Desktop/PS/Tema1PS/Tema1PS/View/Components/Routes.razor]
+build_metadata.AdditionalFiles.TargetPath = 
+build_metadata.AdditionalFiles.TargetPath = Vmlld1xDb21wb25lbnRzXFJvdXRlcy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Daria/Desktop/PS/Tema1PS/Tema1PS/View/Components/_Imports.razor]
+build_metadata.AdditionalFiles.TargetPath = 
+build_metadata.AdditionalFiles.TargetPath = Vmlld1xDb21wb25lbnRzXF9JbXBvcnRzLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Daria/Desktop/PS/Tema1PS/Tema1PS/View/Components/Pages/Actors.razor]
+build_metadata.AdditionalFiles.TargetPath = Vmlld1xDb21wb25lbnRzXFBhZ2VzXEFjdG9ycy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Daria/Desktop/PS/Tema1PS/Tema1PS/View/Components/Pages/Directors.razor]
+build_metadata.AdditionalFiles.TargetPath = Vmlld1xDb21wb25lbnRzXFBhZ2VzXERpcmVjdG9ycy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Daria/Desktop/PS/Tema1PS/Tema1PS/View/Components/Pages/ScreenWriters.razor]
+build_metadata.AdditionalFiles.TargetPath = Vmlld1xDb21wb25lbnRzXFBhZ2VzXFNjcmVlbldyaXRlcnMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 

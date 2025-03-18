@@ -1,0 +1,32 @@
+﻿@page "/employees"
+@inject NavigationManager Navigation
+
+<PageTitle>Employees</PageTitle>
+
+<h1>Employees</h1>
+
+<NavLink class="btn btn-primary" href="/employees/actors">Actors</NavLink>
+<NavLink class="btn btn-primary" href="/employees/screenwriters">Screenwriters</NavLink>
+<NavLink class="btn btn-primary" href="/employees/directors">Directors</NavLink>
+
+
+@code {
+    private void NavigateToActors()
+    {
+        // Navigate to the Actors page
+        Navigation.NavigateTo("employees/actors");
+       
+    }
+
+    private void NavigateToScreenwriters()
+    {
+        // Navigate to the Screenwriters page
+        Navigation.NavigateTo("/screenwriters");
+    }
+
+    private void NavigateToDirectors()
+    {
+        // Navigate to the Directors page
+        Navigation.NavigateTo("/directors");
+    }
+}
