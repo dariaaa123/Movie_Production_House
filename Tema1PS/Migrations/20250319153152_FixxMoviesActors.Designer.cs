@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Tema1PS.DataBase;
 
@@ -10,9 +11,11 @@ using Tema1PS.DataBase;
 namespace Tema1PS.Migrations
 {
     [DbContext(typeof(ProdHouseContext))]
-    partial class ProdHouseContextModelSnapshot : ModelSnapshot
+    [Migration("20250319153152_FixxMoviesActors")]
+    partial class FixxMoviesActors
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

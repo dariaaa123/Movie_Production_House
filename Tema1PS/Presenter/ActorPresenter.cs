@@ -7,7 +7,7 @@ using Tema1PS.Presenter;
 
 namespace Tema1PS.Presenter
 {
-    public class ActorPresenter:IActorGUI
+    public class ActorPresenter:IEmployeeGUI<ActorDTO>
     {
         private readonly ActorRepository _actorRepository;
 
@@ -17,9 +17,9 @@ namespace Tema1PS.Presenter
         }
 
         // Retrieve all actors
-        public async Task<List<ActorDTO>> GetActorsAsync()
+        public async Task<List<ActorDTO>> GetEmployeesAsync()
         {
-            var actors = await _actorRepository.GetAllActorsAsync();
+            var actors = await _actorRepository.GetAllAsync();
 
             return actors.Select(actor => new ActorDTO()
             {
@@ -29,27 +29,47 @@ namespace Tema1PS.Presenter
         }
 
         // Insert a new actor
-        public async Task AddActorAsync(string name)
+        public async Task AddEmployeeAsync(string name)
         {
             var newActor = new Actor { Name = name };
-            await _actorRepository.InsertActorAsync(newActor);
+            await _actorRepository.InsertAsync(newActor);
         }
 
         // Update an existing actor
-        public async Task UpdateActorAsync(int id, string newName)
+        public async Task UpdateEmployeeAsync(int id, string newName)
         {
-            var actor = await _actorRepository.GetActorByIdAsync(id);
+            var actor = await _actorRepository.GetByIdAsync(id);
             if (actor != null)
             {
                 actor.Name = newName;
-                await _actorRepository.UpdateActorAsync(actor);
+                await _actorRepository.UpdateAsync(actor);
             }
         }
 
         // Delete an actor by ID
-        public async Task DeleteActorAsync(int id)
+        public async Task DeleteEmployeeAsync(int id)
         {
-            await _actorRepository.DeleteActorAsync(id);
+            await _actorRepository.DeleteAsync(id);
         }
+        
+        public async Task<ActorDTO> GetEmployeeByIdAsync(int id)
+        {
+            // Fetch the actor from the repository by ID
+            var actor = await _actorRepository.GetByIdAsync(id);
+
+            if (actor == null)
+            {
+                return null; // Return null if no actor is found
+            }
+
+            // Return the actor as an ActorDTO
+            return new ActorDTO
+            {
+                Id = actor.Id,
+                Name = actor.Name
+            };
+        }
+
+      
     }
 }

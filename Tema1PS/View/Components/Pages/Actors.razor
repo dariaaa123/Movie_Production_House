@@ -1,6 +1,6 @@
 @page "/employees/actors"
 @using Tema1PS.Presenter
-@inject IActorGUI ActorPresenter
+@inject IEmployeeGUI<ActorDTO> ActorPresenter
 
 @rendermode InteractiveServer
 
@@ -74,7 +74,7 @@ else
 
     private async Task LoadActors()
     {
-        actors = await ActorPresenter.GetActorsAsync();
+        actors = await ActorPresenter.GetEmployeesAsync();
     }
 
     private async Task AddActor()
@@ -82,7 +82,7 @@ else
         Console.WriteLine("Add button clicked");
         if (!string.IsNullOrWhiteSpace(newActorName))
         {
-            await ActorPresenter.AddActorAsync(newActorName);
+            await ActorPresenter.AddEmployeeAsync(newActorName);
             newActorName = string.Empty;
             await LoadActors();
         }
@@ -98,7 +98,7 @@ else
     {
         if (!string.IsNullOrWhiteSpace(editingActorName))
         {
-            await ActorPresenter.UpdateActorAsync(id, editingActorName);
+            await ActorPresenter.UpdateEmployeeAsync(id, editingActorName);
             editingActorId = 0;
             await LoadActors();
         }
@@ -111,7 +111,7 @@ else
 
     private async Task DeleteActor(int id)
     {
-        await ActorPresenter.DeleteActorAsync(id);
+        await ActorPresenter.DeleteEmployeeAsync(id);
         await LoadActors();
     }
 }

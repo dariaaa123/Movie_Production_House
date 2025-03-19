@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Tema1PS.View.Components;
 using Tema1PS.DataBase;
 using Tema1PS.Model.Repositories;
+using Tema1PS.Model.RepositoryPack;
 using Tema1PS.Presenter;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,8 +10,20 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 // Register Repository and Service
-builder.Services.AddScoped<ActorRepository>(); 
-builder.Services.AddScoped<IActorGUI, ActorPresenter>();
+// Register repositories
+builder.Services.AddScoped<ActorRepository>();
+builder.Services.AddScoped<DirectorRepository>();
+//builder.Services.AddScoped<Repository>();
+builder.Services.AddScoped<ScreenWriterRepository>();
+builder.Services.AddScoped<MovieRepository>();
+builder.Services.AddScoped<MoviesActorsRepository>();
+
+
+// Register presenters with generic interface
+builder.Services.AddScoped<IEmployeeGUI<ActorDTO>, ActorPresenter>();
+builder.Services.AddScoped<IEmployeeGUI<DirectorDTO>, DirectorPresenter>();
+builder.Services.AddScoped<IEmployeeGUI<ScreenWriterDTO>, ScreenWriterPresenter>();
+builder.Services.AddScoped<IMovieGUI, MoviePresenter>();
 
 
 builder.Services.AddRazorPages();

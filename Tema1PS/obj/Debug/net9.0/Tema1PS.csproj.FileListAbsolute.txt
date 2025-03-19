@@ -325,3 +325,4 @@ C:\Users\Daria\Desktop\PS\Tema1PS\Tema1PS\bin\Debug\net9.0\ru\Microsoft.CodeAnal
 C:\Users\Daria\Desktop\PS\Tema1PS\Tema1PS\bin\Debug\net9.0\tr\Microsoft.CodeAnalysis.Scripting.resources.dll
 C:\Users\Daria\Desktop\PS\Tema1PS\Tema1PS\bin\Debug\net9.0\zh-Hans\Microsoft.CodeAnalysis.Scripting.resources.dll
 C:\Users\Daria\Desktop\PS\Tema1PS\Tema1PS\bin\Debug\net9.0\zh-Hant\Microsoft.CodeAnalysis.Scripting.resources.dll
+C:\Users\Daria\Desktop\PS\Tema1PS\Tema1PS\obj\Debug\net9.0\Tema1PS.sourcelink.json
