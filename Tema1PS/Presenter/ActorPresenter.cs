@@ -1,9 +1,9 @@
-// Presenter/Services/ActorService.cs
+
 using Tema1PS.Model;
 using Tema1PS.Model.Repositories;
-using Tema1PS.Presenter;
 
-//using YourProject.ViewModels;
+
+
 
 namespace Tema1PS.Presenter
 {

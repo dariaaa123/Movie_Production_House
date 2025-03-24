@@ -23,7 +23,12 @@ builder.Services.AddScoped<MoviesActorsRepository>();
 builder.Services.AddScoped<IEmployeeGUI<ActorDTO>, ActorPresenter>();
 builder.Services.AddScoped<IEmployeeGUI<DirectorDTO>, DirectorPresenter>();
 builder.Services.AddScoped<IEmployeeGUI<ScreenWriterDTO>, ScreenWriterPresenter>();
-builder.Services.AddScoped<IMovieGUI, MoviePresenter>();
+builder.Services.AddScoped<MoviePresenter>();
+builder.Services.AddScoped<IMovieGUI>(sp => 
+{
+    var httpContextAccessor = sp.GetRequiredService<IHttpContextAccessor>();
+    return (IMovieGUI)httpContextAccessor.HttpContext?.RequestServices.GetService(typeof(IMovieGUI));
+});
 
 
 builder.Services.AddRazorPages();

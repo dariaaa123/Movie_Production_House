@@ -1,13 +1,8 @@
 ﻿@page "/movies"
 @using Tema1PS.Presenter
-@inject IMovieGUI MoviePresenter
-@inject IEmployeeGUI<ActorDTO> ActorPresenter
-@inject IEmployeeGUI<ScreenWriterDTO> ScreenWriterPresenter
-@inject IEmployeeGUI<DirectorDTO> DirectorPresenter
-
+@implements IMovieGUI
+@inject MoviePresenter MoviePresenter
 @rendermode InteractiveServer
-
-<PageTitle>Movies</PageTitle>
 
 <h1>Movies</h1>
 
@@ -19,83 +14,80 @@ else
 {
     <table class="table">
         <thead>
-            <tr>
-                <th>ID</th>
-                <th>Title</th>
-                <th>Year</th>
-                <th>Director</th>
-                <th>Screenwriter</th>
-                <th>Actors</th>
-                <th>Actions</th>
-            </tr>
+        <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Year</th>
+            <th>Category</th>
+            <th>Type</th>
+            <th>Director</th>
+            <th>Screenwriter</th>
+            <th>Actors</th>
+            <th>Actions</th>
+        </tr>
         </thead>
         <tbody>
-            @foreach (var movie in movies)
-            {
-                <tr>
-                    <td>@movie.Id</td>
-                    <td>
-                        @if (editingMovieId == movie.Id)
-                        {
-                            <input @bind="editingMovieTitle" />
-                        }
-                        else
-                        {
-                            @movie.Title
-                        }
-                    </td>
-                    <td>@movie.Year</td>
-                    <td>@GetDirectorName(movie.DirectorId)</td>
-                    <td>@GetScreenWriterName(movie.ScreenWriterId)</td>
-                    <td>@string.Join(", ", GetActorNames(movie.ActorIds))</td>
-                    <td>
-                        @if (editingMovieId == movie.Id)
-                        {
-                            <button class="btn btn-success" @onclick="() => SaveEdit(movie.Id)">Save</button>
-                            <button class="btn btn-secondary" @onclick="CancelEdit">Cancel</button>
-                        }
-                        else
-                        {
-                            <button class="btn btn-warning" @onclick="() => EditMovie(movie.Id, movie.Title)">Edit</button>
-                            <button class="btn btn-danger" @onclick="() => DeleteMovie(movie.Id)">Delete</button>
-                        }
-                    </td>
-                </tr>
-            }
+        @foreach (var movie in movies)
+        {
+            <tr>
+                <td>@movie.Id</td>
+                <td>@movie.Title</td>
+                <td>@movie.Year</td>
+                <td>@movie.Category</td>
+                <td>@movie.Type</td>
+                <td>@movie.DirectorName</td>
+                <td>@movie.ScreenWriterName</td>
+                <td>@string.Join(", ", movie.ActorNames)</td>
+                <td>
+                    <button class="btn btn-warning" @onclick="() => EditMovie(movie)">Edit</button>
+                    <button class="btn btn-danger" @onclick="() => DeleteMovie(movie.Id)">Delete</button>
+                </td>
+            </tr>
+        }
         </tbody>
     </table>
 }
 
-<h3>Add New Movie</h3>
+<h3>@(editingMovieId == 0 ? "Add New Movie" : "Edit Movie")</h3>
 <div>
     <input @bind="newMovieTitle" placeholder="Enter movie title" />
     <input type="number" @bind="newMovieYear" placeholder="Enter year" />
+    <input @bind="newMovieCategory" placeholder="Enter category" />
+    <input @bind="newMovieType" placeholder="Enter type" />
     <input type="number" @bind="newMovieDirectorId" placeholder="Enter director ID" />
     <input type="number" @bind="newMovieScreenWriterId" placeholder="Enter screenwriter ID" />
     <input @bind="newMovieActorIds" placeholder="Enter actor IDs (comma-separated)" />
-    <button class="btn btn-primary" @onclick="AddMovie">Add</button>
+
+    @if (editingMovieId == 0)
+    {
+        <button class="btn btn-primary ml-3" @onclick="AddMovie">Add</button>
+
+    }
+    else
+    {
+        <button class="btn btn-success" @onclick="UpdateMovie">Update</button>
+        <button class="btn btn-secondary" @onclick="CancelEdit">Cancel</button>
+    }
 </div>
 
 @code {
     private List<MovieDTO> movies = new();
     private string newMovieTitle = string.Empty;
+    private string newMovieCategory = string.Empty;
+    private string newMovieType = string.Empty;
     private int newMovieYear;
     private int newMovieDirectorId;
     private int newMovieScreenWriterId;
     private string newMovieActorIds = string.Empty;
-    
-    private int editingMovieId = 0;
-    private string editingMovieTitle = string.Empty;
 
-    private Dictionary<int, string> directors = new();
-    private Dictionary<int, string> screenwriters = new();
-    private Dictionary<int, string> actors = new();
+    private int editingMovieId = 0;
+
+    private int deletingMovieId = 0;
 
     protected override async Task OnInitializedAsync()
     {
-        // Load all movies and pre-load director, screenwriter, and actor names
+        MoviePresenter.SetMovieGUI(this); // ✅ Assign the Blazor component instance to MoviePresenter
         await LoadMovies();
-        await LoadRelatedData();
     }
 
     private async Task LoadMovies()
@@ -103,85 +95,72 @@ else
         movies = await MoviePresenter.GetMoviesAsync();
     }
 
-    private async Task LoadRelatedData()
-    {
-        // Preload directors
-        var allDirectors = await DirectorPresenter.GetEmployeesAsync();
-        directors = allDirectors.ToDictionary(d => d.Id, d => d.Name);
-
-        // Preload screenwriters
-        var allScreenwriters = await ScreenWriterPresenter.GetEmployeesAsync();
-        screenwriters = allScreenwriters.ToDictionary(s => s.Id, s => s.Name);
-
-        // Preload actors
-        var allActors = await ActorPresenter.GetEmployeesAsync();
-        actors = allActors.ToDictionary(a => a.Id, a => a.Name);
-    }
-
     private async Task AddMovie()
     {
-        if (!string.IsNullOrWhiteSpace(newMovieTitle) && newMovieYear > 0)
-        {
-            var actorIds = newMovieActorIds.Split(',') 
-                                           .Where(id => int.TryParse(id.Trim(), out _))
-                                           .Select(id => int.Parse(id.Trim()))
-                                           .ToList();
-
-            await MoviePresenter.AddMovieAsync(newMovieTitle, newMovieYear, newMovieDirectorId, newMovieScreenWriterId, actorIds);
-            newMovieTitle = string.Empty;
-            newMovieYear = 0;
-            newMovieDirectorId = 0;
-            newMovieScreenWriterId = 0;
-            newMovieActorIds = string.Empty;
-            await LoadMovies();
-        }
+        await MoviePresenter.AddMovieAsync();
+        await LoadMovies();
+        ResetFields();
     }
 
-    private void EditMovie(int id, string title)
+    private void EditMovie(MovieDTO movie)
     {
-        editingMovieId = id;
-        editingMovieTitle = title;
+        editingMovieId = movie.Id;
+        newMovieTitle = movie.Title;
+        newMovieYear = movie.Year;
+        newMovieCategory = movie.Category;
+        newMovieType = movie.Type;
+        newMovieDirectorId = movie.DirectorId;
+        newMovieScreenWriterId = movie.ScreenWriterId;
+        newMovieActorIds = string.Join(", ", movie.ActorIds);
     }
 
-    private async Task SaveEdit(int id)
+    private async Task UpdateMovie()
     {
-        if (!string.IsNullOrWhiteSpace(editingMovieTitle))
-        {
-            var movie = movies.FirstOrDefault(m => m.Id == id);
-            if (movie != null)
-            {
-                await MoviePresenter.UpdateMovieAsync(id, editingMovieTitle, movie.Year, movie.DirectorId, movie.ScreenWriterId, movie.ActorIds);
-            }
-            editingMovieId = 0;
-            await LoadMovies();
-        }
-    }
-
-    private void CancelEdit()
-    {
-        editingMovieId = 0;
+        await MoviePresenter.UpdateMovieAsync(); // No parameters!
+        await LoadMovies();
+        ResetFields();
     }
 
     private async Task DeleteMovie(int id)
     {
-        await MoviePresenter.DeleteMovieAsync(id);
+        deletingMovieId = id;
+        await MoviePresenter.DeleteMovieAsync();
         await LoadMovies();
     }
 
-    private string GetDirectorName(int directorId)
+    private void CancelEdit()
     {
-        return directors.ContainsKey(directorId) ? directors[directorId] : $"Director {directorId}";
+        ResetFields();
     }
 
-    private string GetScreenWriterName(int screenWriterId)
+    private void ResetFields()
     {
-        return screenwriters.ContainsKey(screenWriterId) ? screenwriters[screenWriterId] : $"Screenwriter {screenWriterId}";
+        deletingMovieId = 0;
+        editingMovieId = 0;
+        newMovieTitle = string.Empty;
+        newMovieYear = 0;
+        newMovieCategory = string.Empty;
+        newMovieType = string.Empty;
+        newMovieDirectorId = 0;
+        newMovieScreenWriterId = 0;
+        newMovieActorIds = string.Empty;
     }
 
-    private List<string> GetActorNames(List<int> actorIds)
+    // IMovieGUI Implementation
+
+    public int GetMovieId() => editingMovieId;
+    public string GetMovieTitle() => newMovieTitle;
+    public int GetMovieYear() => newMovieYear;
+    public string GetMovieCategory() => newMovieCategory;
+    public string GetMovieType() => newMovieType;
+    public int GetMovieDirectorId() => newMovieDirectorId;
+    public int GetMovieScreenWriterId() => newMovieScreenWriterId;
+    public int GetDeleteMovieId() => deletingMovieId;
+    public List<int> GetMovieActorIds()
     {
-        var actorNames = actorIds.Select(id => actors.ContainsKey(id) ? actors[id] : $"Actor {id}")
-                                 .ToList();
-        return actorNames;
+        return newMovieActorIds.Split(',')
+            .Where(id => int.TryParse(id.Trim(), out _))
+            .Select(id => int.Parse(id.Trim()))
+            .ToList();
     }
 }
