@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Tema1PS")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+50703c9705d6f8e9afec8e5cf67ff638777727af")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+175fb5c7943eec6d97bc1431866e7fc8c33aab55")]
 [assembly: System.Reflection.AssemblyProductAttribute("Tema1PS")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Tema1PS")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

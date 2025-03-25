@@ -1,43 +1,51 @@
-
 using Tema1PS.Model;
 using Tema1PS.Model.Repositories;
 
-
-
-
 namespace Tema1PS.Presenter
 {
-    public class ActorPresenter:IEmployeeGUI<ActorDTO>
+    public class ActorPresenter
     {
+        private IEmployeeGUI _employeeGUI;
         private readonly ActorRepository _actorRepository;
 
+       
         public ActorPresenter(ActorRepository actorRepository)
         {
-            _actorRepository = actorRepository;
+            _actorRepository = actorRepository ?? throw new ArgumentNullException(nameof(actorRepository));
+        }
+
+        // Set the GUI (in this case, the Actor's Blazor page)
+        public void SetEmployeeGUI(IEmployeeGUI employeeGUI)
+        {
+            _employeeGUI = employeeGUI ?? throw new ArgumentNullException(nameof(employeeGUI));
         }
 
         // Retrieve all actors
-        public async Task<List<ActorDTO>> GetEmployeesAsync()
+        public async Task<List<ActorDTO>> GetActorsAsync()
         {
             var actors = await _actorRepository.GetAllAsync();
 
             return actors.Select(actor => new ActorDTO()
             {
-                Id = actor.Id, // Include ID for updates and deletes
+                Id = actor.Id,
                 Name = actor.Name
             }).ToList();
         }
 
         // Insert a new actor
-        public async Task AddEmployeeAsync(string name)
+        public async Task AddActorAsync()
         {
+            var name = _employeeGUI.GetNewEmployeeName();  // Get the name from the GUI
             var newActor = new Actor { Name = name };
             await _actorRepository.InsertAsync(newActor);
         }
 
         // Update an existing actor
-        public async Task UpdateEmployeeAsync(int id, string newName)
+        public async Task UpdateActorAsync()
         {
+            int id = _employeeGUI.GetEmployeeId();  // Get the actor's ID from the GUI
+            var newName = _employeeGUI.GetEmployeeName();  // Get the updated name from the GUI
+
             var actor = await _actorRepository.GetByIdAsync(id);
             if (actor != null)
             {
@@ -47,29 +55,25 @@ namespace Tema1PS.Presenter
         }
 
         // Delete an actor by ID
-        public async Task DeleteEmployeeAsync(int id)
+        public async Task DeleteActorAsync()
         {
+            int id = _employeeGUI.GetDeletingEmployeeId();  // Get the ID from the GUI
             await _actorRepository.DeleteAsync(id);
+            //await LoadActors();
         }
-        
-        public async Task<ActorDTO> GetEmployeeByIdAsync(int id)
+
+        // Get actor details by ID
+        public async Task<ActorDTO> GetActorByIdAsync()
         {
-            // Fetch the actor from the repository by ID
+            int id = _employeeGUI.GetEmployeeId();
             var actor = await _actorRepository.GetByIdAsync(id);
+            if (actor == null) return null;
 
-            if (actor == null)
-            {
-                return null; // Return null if no actor is found
-            }
-
-            // Return the actor as an ActorDTO
             return new ActorDTO
             {
                 Id = actor.Id,
                 Name = actor.Name
             };
         }
-
-      
     }
 }

@@ -15,6 +15,8 @@ public class MovieDTO
 
     public List<int> ActorIds { get; set; } = new List<int>();
     public List<string> ActorNames { get; set; } = new List<string>(); 
+    
+    
 
  
 }

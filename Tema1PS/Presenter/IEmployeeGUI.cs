@@ -1,10 +1,14 @@
-namespace Tema1PS.Presenter;
-
-public interface IEmployeeGUI<T>
+namespace Tema1PS.Presenter
 {
-    Task<List<T>> GetEmployeesAsync();
-    Task AddEmployeeAsync(string name);
-    Task UpdateEmployeeAsync(int id, string newName);
-    Task DeleteEmployeeAsync(int id);
-    Task<T> GetEmployeeByIdAsync(int id); 
+    public interface IEmployeeGUI
+    {
+        // For Actor, you need the ID and Name.
+        int GetEmployeeId();
+        string GetEmployeeName();
+        
+        public string GetNewEmployeeName();
+        public int GetNewEmployeeId();
+        public int GetDeletingEmployeeId();
+        public string GetDeletingEmployeeName();
+    }
 }

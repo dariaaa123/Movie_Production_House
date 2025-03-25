@@ -1,7 +1,7 @@
 @page "/employees/actors"
 @using Tema1PS.Presenter
-@inject IEmployeeGUI<ActorDTO> ActorPresenter
-
+@inject ActorPresenter ActorPresenter
+@implements IEmployeeGUI
 @rendermode InteractiveServer
 
 <PageTitle>Actors</PageTitle>
@@ -63,18 +63,29 @@ else
 
 @code {
     private List<ActorDTO> actors = new();
+
+    private int actorID = 0;
+    private string actorName = string.Empty;
+    
     private string newActorName = string.Empty;
+    private int newActorId = 0;
+    
     private int editingActorId = 0;
     private string editingActorName = string.Empty;
 
+    private int deletingActorId = 0;
+    private string deletingActorName = string.Empty;
+
     protected override async Task OnInitializedAsync()
     {
-        await LoadActors();
+        ActorPresenter.SetEmployeeGUI(this); // Ensure this is set so that the presenter knows about the UI
+        await LoadActors(); // Load the actors when the page initializes
     }
+
 
     private async Task LoadActors()
     {
-        actors = await ActorPresenter.GetEmployeesAsync();
+        actors = await ActorPresenter.GetActorsAsync();
     }
 
     private async Task AddActor()
@@ -82,8 +93,8 @@ else
         Console.WriteLine("Add button clicked");
         if (!string.IsNullOrWhiteSpace(newActorName))
         {
-            await ActorPresenter.AddEmployeeAsync(newActorName);
-            newActorName = string.Empty;
+            await ActorPresenter.AddActorAsync();
+            //newActorName = string.Empty;
             await LoadActors();
         }
     }
@@ -92,16 +103,17 @@ else
     {
         editingActorId = id;
         editingActorName = name;
+            //await LoadActors();
     }
 
     private async Task SaveEdit(int id)
     {
-        if (!string.IsNullOrWhiteSpace(editingActorName))
-        {
-            await ActorPresenter.UpdateEmployeeAsync(id, editingActorName);
-            editingActorId = 0;
-            await LoadActors();
-        }
+        actorID = id;  // Set the correct ID before calling the update
+        actorName = editingActorName;  // Set the correct new name
+        
+        await ActorPresenter.UpdateActorAsync();  // Now it will read the correct data
+        editingActorId = 0;  // Reset editing state
+        await LoadActors();   // Refresh the actor list
     }
 
     private void CancelEdit()
@@ -111,7 +123,17 @@ else
 
     private async Task DeleteActor(int id)
     {
-        await ActorPresenter.DeleteEmployeeAsync(id);
+        deletingActorId = id;
+        await ActorPresenter.DeleteActorAsync();
         await LoadActors();
     }
+    
+    
+    public int GetEmployeeId() => actorID;
+    public string GetEmployeeName() => actorName;
+    public string GetNewEmployeeName() => newActorName;
+    public int GetNewEmployeeId() => newActorId;
+    public int GetDeletingEmployeeId() => deletingActorId;
+    public string GetDeletingEmployeeName() => deletingActorName;
+
 }

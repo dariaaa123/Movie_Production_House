@@ -3,7 +3,7 @@ using Tema1PS.Model.RepositoryPack;
 
 namespace Tema1PS.Presenter;
 
-public class ScreenWriterPresenter:IEmployeeGUI<ScreenWriterDTO>
+public class ScreenWriterPresenter
 {
     private readonly ScreenWriterRepository _screenWriterRepository;
 

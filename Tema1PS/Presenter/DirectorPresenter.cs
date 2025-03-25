@@ -3,7 +3,7 @@ using Tema1PS.Model.Repositories;
 
 namespace Tema1PS.Presenter;
 
-public class DirectorPresenter:IEmployeeGUI<DirectorDTO>
+public class DirectorPresenter
 {
     private readonly DirectorRepository _directorRepository;
 
