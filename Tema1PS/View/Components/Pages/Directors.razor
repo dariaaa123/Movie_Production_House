@@ -1,0 +1,134 @@
+@page "/employees/directors"
+@using Tema1PS.Presenter
+@inject DirectorPresenter DirectorPresenter
+@implements IEmployeeGUI
+@rendermode InteractiveServer
+
+<PageTitle>Directors</PageTitle>
+
+<h1>Directors</h1>
+
+@if (directors == null)
+{
+    <p>Loading directors...</p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var director in directors)
+            {
+                <tr>
+                    <td>@director.Id</td>
+                    <td>
+                        @if (editingDirectorId == director.Id)
+                        {
+                            <input @bind="editingDirectorName" />
+                        }
+                        else
+                        {
+                            @director.Name
+                        }
+                    </td>
+                    <td>
+                        @if (editingDirectorId == director.Id)
+                        {
+                            <button class="btn btn-success" @onclick="() => SaveEdit(director.Id)">Save</button>
+                            <button class="btn btn-secondary" @onclick="CancelEdit">Cancel</button>
+                        }
+                        else
+                        {
+                            <button class="btn btn-warning" @onclick="() => EditDirector(director.Id, director.Name)">Edit</button>
+                            <button class="btn btn-danger" @onclick="() => DeleteDirector(director.Id)">Delete</button>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+<h3>Add New Director</h3>
+<div>
+    <input @bind="newDirectorName" placeholder="Enter director name" />
+    <button class="btn btn-primary" @onclick="AddDirector">Add</button>
+</div>
+
+@code {
+    private List<DirectorDTO> directors = new();
+
+    private int directorID = 0;
+    private string directorName = string.Empty;
+
+    private string newDirectorName = string.Empty;
+    private int newDirectorId = 0;
+
+    private int editingDirectorId = 0;
+    private string editingDirectorName = string.Empty;
+
+    private int deletingDirectorId = 0;
+    private string deletingDirectorName = string.Empty;
+
+    protected override async Task OnInitializedAsync()
+    {
+        DirectorPresenter.SetEmployeeGUI(this); 
+        await LoadDirectors(); 
+    }
+
+    private async Task LoadDirectors()
+    {
+        directors = await DirectorPresenter.GetDirectorsAsync();
+    }
+
+    private async Task AddDirector()
+    {
+        Console.WriteLine("Add button clicked");
+        if (!string.IsNullOrWhiteSpace(newDirectorName))
+        {
+            await DirectorPresenter.AddDirectorAsync();
+            await LoadDirectors();
+        }
+    }
+
+    private void EditDirector(int id, string name)
+    {
+        editingDirectorId = id;
+        editingDirectorName = name;
+    }
+
+    private async Task SaveEdit(int id)
+    {
+        directorID = id; 
+        directorName = editingDirectorName; 
+        
+        await DirectorPresenter.UpdateDirectorAsync(); 
+        editingDirectorId = 0;
+        await LoadDirectors();
+    }
+
+    private void CancelEdit()
+    {
+        editingDirectorId = 0;
+    }
+
+    private async Task DeleteDirector(int id)
+    {
+        deletingDirectorId = id;
+        await DirectorPresenter.DeleteDirectorAsync();
+        await LoadDirectors();
+    }
+
+    public int GetEmployeeId() => directorID;
+    public string GetEmployeeName() => directorName;
+    public string GetNewEmployeeName() => newDirectorName;
+    public int GetNewEmployeeId() => newDirectorId;
+    public int GetDeletingEmployeeId() => deletingDirectorId;
+    public string GetDeletingEmployeeName() => deletingDirectorName;
+}

@@ -1,0 +1,136 @@
+@page "/employees/screenwriters"
+@using Tema1PS.Presenter
+@inject ScreenWriterPresenter ScreenWriterPresenter
+@implements IEmployeeGUI
+@rendermode InteractiveServer
+
+<PageTitle>Screenwriters</PageTitle>
+
+<h1>Screenwriters</h1>
+
+@if (screenwriters == null)
+{
+    <p>Loading screenwriters...</p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var screenwriter in screenwriters)
+            {
+                <tr>
+                    <td>@screenwriter.Id</td>
+                    <td>
+                        @if (editingScreenWriterId == screenwriter.Id)
+                        {
+                            <input @bind="editingScreenWriterName" />
+                        }
+                        else
+                        {
+                            @screenwriter.Name
+                        }
+                    </td>
+                    <td>
+                        @if (editingScreenWriterId == screenwriter.Id)
+                        {
+                            <button class="btn btn-success" @onclick="() => SaveEdit(screenwriter.Id)">Save</button>
+                            <button class="btn btn-secondary" @onclick="CancelEdit">Cancel</button>
+                        }
+                        else
+                        {
+                            <button class="btn btn-warning" @onclick="() => EditScreenWriter(screenwriter.Id, screenwriter.Name)">Edit</button>
+                            <button class="btn btn-danger" @onclick="() => DeleteScreenWriter(screenwriter.Id)">Delete</button>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+<h3>Add New Screenwriter</h3>
+<div>
+    <input @bind="newScreenWriterName" placeholder="Enter screenwriter name" />
+    <button class="btn btn-primary" @onclick="AddScreenWriter">Add</button>
+</div>
+
+@code {
+    private List<ScreenWriterDTO> screenwriters = new();
+
+    private int screenWriterID = 0;
+    private string screenWriterName = string.Empty;
+    
+    private string newScreenWriterName = string.Empty;
+    private int newScreenWriterId = 0;
+    
+    private int editingScreenWriterId = 0;
+    private string editingScreenWriterName = string.Empty;
+
+    private int deletingScreenWriterId = 0;
+    private string deletingScreenWriterName = string.Empty;
+
+    protected override async Task OnInitializedAsync()
+    {
+        ScreenWriterPresenter.SetEmployeeGUI(this); 
+        await LoadScreenWriters(); 
+    }
+
+    private async Task LoadScreenWriters()
+    {
+        screenwriters = await ScreenWriterPresenter.GetScreenWritersAsync();
+    }
+
+    private async Task AddScreenWriter()
+    {
+        Console.WriteLine("Add button clicked");
+        if (!string.IsNullOrWhiteSpace(newScreenWriterName))
+        {
+            await ScreenWriterPresenter.AddScreenWriterAsync();
+            await LoadScreenWriters();
+        }
+    }
+
+    private void EditScreenWriter(int id, string name)
+    {
+        editingScreenWriterId = id;
+        editingScreenWriterName = name;
+    }
+
+    private async Task SaveEdit(int id)
+    {
+        screenWriterID = id; 
+        screenWriterName = editingScreenWriterName; 
+        
+        await ScreenWriterPresenter.UpdateScreenWriterAsync(); 
+        editingScreenWriterId = 0;
+        await LoadScreenWriters();
+    }
+
+    private void CancelEdit()
+    {
+        editingScreenWriterId = 0;
+    }
+
+    private async Task DeleteScreenWriter(int id)
+    {
+        deletingScreenWriterId = id;
+        await ScreenWriterPresenter.DeleteScreenWriterAsync();
+        await LoadScreenWriters();
+    }
+    
+    
+    public int GetEmployeeId() => screenWriterID;
+    public string GetEmployeeName() => screenWriterName;
+    public string GetNewEmployeeName() => newScreenWriterName;
+    public int GetNewEmployeeId() => newScreenWriterId;
+    public int GetDeletingEmployeeId() => deletingScreenWriterId;
+    public string GetDeletingEmployeeName() => deletingScreenWriterName;
+
+}
