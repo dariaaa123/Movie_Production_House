@@ -1,68 +1,72 @@
 using Tema1PS.Model;
 using Tema1PS.Model.Repositories;
 
-namespace Tema1PS.Presenter;
-
-public class DirectorPresenter
+namespace Tema1PS.Presenter
 {
-    private readonly DirectorRepository _directorRepository;
-
-    public DirectorPresenter(DirectorRepository directorRepository)
+    public class DirectorPresenter
     {
-        _directorRepository = directorRepository;
-    }
+        private IEmployeeGUI _employeeGUI;
+        private readonly DirectorRepository _directorRepository;
 
-    // Retrieve all actors
-    public async Task<List<DirectorDTO>> GetEmployeesAsync()
-    {
-        var directors = await _directorRepository.GetAllAsync();
-
-        return directors.Select(director => new DirectorDTO()
+        public DirectorPresenter(DirectorRepository directorRepository)
         {
-            Id = director.Id, // Include ID for updates and deletes
-            Name = director.Name
-        }).ToList();
-    }
-
-    // Insert a new actor
-    public async Task AddEmployeeAsync(string name)
-    {
-        var newDirector = new Director { Name = name };
-        await _directorRepository.InsertAsync(newDirector);
-    }
-
-    // Update an existing actor
-    public async Task UpdateEmployeeAsync(int id, string newName)
-    {
-        var actor = await _directorRepository.GetByIdAsync(id);
-        if (actor != null)
-        {
-            actor.Name = newName;
-            await _directorRepository.UpdateAsync(actor);
+            _directorRepository = directorRepository ?? throw new ArgumentNullException(nameof(directorRepository));
         }
-    }
-
-    // Delete an actor by ID
-    public async Task DeleteEmployeeAsync(int id)
-    {
-        await _directorRepository.DeleteAsync(id);
-    }
-    
-    public async Task<DirectorDTO> GetEmployeeByIdAsync(int id)
-    {
-        // Fetch the actor from the repository by ID
-        var director = await _directorRepository.GetByIdAsync(id);
-
-        if (director == null)
+        
+        public void SetEmployeeGUI(IEmployeeGUI employeeGUI)
         {
-            return null; // Return null if no actor is found
+            _employeeGUI = employeeGUI ?? throw new ArgumentNullException(nameof(employeeGUI));
+        }
+        
+        public async Task<List<DirectorDTO>> GetDirectorsAsync()
+        {
+            var directors = await _directorRepository.GetAllAsync();
+
+            return directors.Select(director => new DirectorDTO()
+            {
+                Id = director.Id,
+                Name = director.Name
+            }).ToList();
+        }
+        
+        public async Task AddDirectorAsync()
+        {
+            var name = _employeeGUI.GetNewEmployeeName();  
+            var newDirector = new Director { Name = name };
+            await _directorRepository.InsertAsync(newDirector);
         }
 
-        // Return the actor as an ActorDTO
-        return new DirectorDTO
+        public async Task UpdateDirectorAsync()
         {
-            Id = director.Id,
-            Name = director.Name
-        };
+            int id = _employeeGUI.GetEmployeeId();  
+            var newName = _employeeGUI.GetEmployeeName(); 
+
+            var director = await _directorRepository.GetByIdAsync(id);
+            if (director != null)
+            {
+                director.Name = newName;
+                await _directorRepository.UpdateAsync(director);
+            }
+        }
+
+   
+        public async Task DeleteDirectorAsync()
+        {
+            int id = _employeeGUI.GetDeletingEmployeeId();  
+            await _directorRepository.DeleteAsync(id);
+        }
+
+        public async Task<DirectorDTO> GetDirectorByIdAsync()
+        {
+            int id = _employeeGUI.GetEmployeeId();
+            var director = await _directorRepository.GetByIdAsync(id);
+            if (director == null) return null;
+
+            return new DirectorDTO
+            {
+                Id = director.Id,
+                Name = director.Name
+            };
+        }
     }
 }

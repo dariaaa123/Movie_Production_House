@@ -1,7 +1,7 @@
-using Microsoft.AspNetCore.Components.Web;
 using Tema1PS.Model;
 using Tema1PS.Model.Repositories;
 using Tema1PS.Model.RepositoryPack;
+using Tema1PS.Presenter;
 
 namespace Tema1PS.Presenter
 {
@@ -39,7 +39,6 @@ namespace Tema1PS.Presenter
             {
                 var director = await _directorRepository.GetByIdAsync(movie.DirectorId);
                 var screenWriter = await _screenWriterRepository.GetByIdAsync(movie.ScreenWriterId);
-        
                 var actorIds = await _moviesActorsRepository.GetActorsByMovieIdAsync(movie.Id);
                 var actorNames = new List<string>();
 
@@ -55,18 +54,22 @@ namespace Tema1PS.Presenter
                     Id = movie.Id,
                     Title = movie.Title,
                     Year = movie.Year,
-                    Category = movie.Category, // ✅ Ensure Category is included
-                    Type = movie.Type, // ✅ Ensure Type is included
+                    Category = movie.Category,
+                    Type = movie.Type,
                     DirectorId = movie.DirectorId,
-                    DirectorName = director?.Name,
+                    DirectorName = director.Name,
                     ScreenWriterId = movie.ScreenWriterId,
-                    ScreenWriterName = screenWriter?.Name,
+                    ScreenWriterName = screenWriter.Name,
                     ActorIds = actorIds,
-                    ActorNames = actorNames
+                    ActorNames = actorNames,
+                    Photo1 = movie.Photo1,
+                    Photo2 = movie.Photo2,
+                    Photo3 = movie.Photo3
                 };
 
                 movieDtos.Add(movieDto);
             }
+
             return movieDtos;
         }
 
@@ -80,6 +83,9 @@ namespace Tema1PS.Presenter
                 Type = _movieGUI.GetMovieType(),
                 DirectorId = _movieGUI.GetMovieDirectorId(),
                 ScreenWriterId = _movieGUI.GetMovieScreenWriterId(),
+                Photo1 = _movieGUI.GetMoviePhoto1(),
+                Photo2 = _movieGUI.GetMoviePhoto2(),
+                Photo3 = _movieGUI.GetMoviePhoto3()
             };
 
             int movieId = await _movieRepository.InsertAsync(newMovie);
@@ -94,15 +100,14 @@ namespace Tema1PS.Presenter
         public async Task UpdateMovieAsync()
         {
             int movieId = _movieGUI.GetMovieId();
-
-            // Retrieve the existing movie from the database to avoid tracking issues
+            
             var existingMovie = await _movieRepository.GetByIdAsync(movieId);
-            if (existingMovie == null)
+            /*if (existingMovie == null)
             {
                 throw new InvalidOperationException($"Movie with ID {movieId} not found.");
-            }
+            }*/
 
-            // Update the movie properties
+            
             existingMovie.Title = _movieGUI.GetMovieTitle();
             existingMovie.Year = _movieGUI.GetMovieYear();
             existingMovie.Category = _movieGUI.GetMovieCategory();
@@ -110,10 +115,15 @@ namespace Tema1PS.Presenter
             existingMovie.DirectorId = _movieGUI.GetMovieDirectorId();
             existingMovie.ScreenWriterId = _movieGUI.GetMovieScreenWriterId();
 
-            // Update the movie in the database
+         
+            existingMovie.Photo1 = _movieGUI.GetMoviePhoto1();
+            existingMovie.Photo2 = _movieGUI.GetMoviePhoto2();
+            existingMovie.Photo3 = _movieGUI.GetMoviePhoto3();
+
+       
             await _movieRepository.UpdateAsync(existingMovie);
 
-            // Update actors
+        
             await _moviesActorsRepository.RemoveAllActorsFromMovieAsync(movieId);
             var actorIds = _movieGUI.GetMovieActorIds();
             foreach (var actorId in actorIds)
@@ -122,13 +132,48 @@ namespace Tema1PS.Presenter
             }
         }
 
-
         public async Task DeleteMovieAsync()
         {
             int id = _movieGUI.GetDeleteMovieId();
-                
+
             await _moviesActorsRepository.RemoveAllActorsFromMovieAsync(id);
             await _movieRepository.DeleteAsync(id);
         }
+
+        public async Task<List<ActorDTO>> GetActorsAsync()
+        {
+            var actors = await _actorRepository.GetAllAsync(); 
+
+            return actors.Select(a => new ActorDTO
+            {
+                Id = a.Id,
+                Name = a.Name
+            }).ToList();
+        }
+        
+        public async Task<List<DirectorDTO>> GetDirectorsAsync()
+        {
+            var directors = await _directorRepository.GetAllAsync(); 
+
+            return directors.Select(d => new DirectorDTO
+            {
+                Id = d.Id,
+                Name = d.Name
+            }).ToList();
+        }
+
+        
+        public async Task<List<ScreenWriterDTO>> GetScreenwritersAsync()
+        {
+            var screenwriters = await _screenWriterRepository.GetAllAsync(); 
+
+            return screenwriters.Select(s => new ScreenWriterDTO
+            {
+                Id = s.Id,
+                Name = s.Name
+            }).ToList();
+        }
+
+
     }
 }

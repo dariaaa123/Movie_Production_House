@@ -11,5 +11,8 @@ namespace Tema1PS.Presenter
         int GetMovieDirectorId();
         int GetMovieScreenWriterId();
         List<int> GetMovieActorIds();
+        string GetMoviePhoto1();
+        string GetMoviePhoto2();
+        string GetMoviePhoto3();
     }
 }

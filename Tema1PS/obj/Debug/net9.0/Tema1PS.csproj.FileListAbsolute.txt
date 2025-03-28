@@ -14,7 +14,6 @@ C:\Users\Daria\Desktop\PS\Tema1PS\Tema1PS\obj\Debug\net9.0\Tema1PS.csproj.CoreCo
 C:\Users\Daria\Desktop\PS\Tema1PS\Tema1PS\obj\Debug\net9.0\Tema1PS.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\Daria\Desktop\PS\Tema1PS\Tema1PS\obj\Debug\net9.0\scopedcss\bundle\Tema1PS.styles.css
 C:\Users\Daria\Desktop\PS\Tema1PS\Tema1PS\obj\Debug\net9.0\scopedcss\projectbundle\Tema1PS.bundle.scp.css
-C:\Users\Daria\Desktop\PS\Tema1PS\Tema1PS\obj\Debug\net9.0\compressed\mgy63513xz-khy4lop6wu.gz
 C:\Users\Daria\Desktop\PS\Tema1PS\Tema1PS\obj\Debug\net9.0\compressed\fjlb5zihvp-t1cqhe9u97.gz
 C:\Users\Daria\Desktop\PS\Tema1PS\Tema1PS\obj\Debug\net9.0\compressed\ayfekchsvw-c2jlpeoesf.gz
 C:\Users\Daria\Desktop\PS\Tema1PS\Tema1PS\obj\Debug\net9.0\compressed\h2gt928abg-sejl45xvog.gz
@@ -326,3 +325,5 @@ C:\Users\Daria\Desktop\PS\Tema1PS\Tema1PS\bin\Debug\net9.0\tr\Microsoft.CodeAnal
 C:\Users\Daria\Desktop\PS\Tema1PS\Tema1PS\bin\Debug\net9.0\zh-Hans\Microsoft.CodeAnalysis.Scripting.resources.dll
 C:\Users\Daria\Desktop\PS\Tema1PS\Tema1PS\bin\Debug\net9.0\zh-Hant\Microsoft.CodeAnalysis.Scripting.resources.dll
 C:\Users\Daria\Desktop\PS\Tema1PS\Tema1PS\obj\Debug\net9.0\Tema1PS.sourcelink.json
+C:\Users\Daria\Desktop\PS\Tema1PS\Tema1PS\obj\Debug\net9.0\compressed\mgy63513xz-z7hlkf17qt.gz
+C:\Users\Daria\Desktop\PS\Tema1PS\Tema1PS\obj\Debug\net9.0\compressed\heeqnmd1ca-7s3m5275za.gz

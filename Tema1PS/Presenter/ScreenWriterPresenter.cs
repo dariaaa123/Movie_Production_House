@@ -1,68 +1,74 @@
 using Tema1PS.Model;
+using Tema1PS.Model.Repositories;
 using Tema1PS.Model.RepositoryPack;
 
-namespace Tema1PS.Presenter;
-
-public class ScreenWriterPresenter
+namespace Tema1PS.Presenter
 {
-    private readonly ScreenWriterRepository _screenWriterRepository;
-
-    public ScreenWriterPresenter(ScreenWriterRepository screenWriterRepository)
+    public class ScreenWriterPresenter
     {
-        _screenWriterRepository = screenWriterRepository;
-    }
+        private IEmployeeGUI _employeeGUI;
+        private readonly ScreenWriterRepository _screenWriterRepository;
 
-    // Retrieve all screenwriters
-    public async Task<List<ScreenWriterDTO>> GetEmployeesAsync()
-    {
-        var screenWriters = await _screenWriterRepository.GetAllAsync();
-
-        return screenWriters.Select(screenWriter => new ScreenWriterDTO()
+        public ScreenWriterPresenter(ScreenWriterRepository screenWriterRepository)
         {
-            Id = screenWriter.Id, // Include ID for updates and deletes
-            Name = screenWriter.Name
-        }).ToList();
-    }
-
-    // Insert a new screenwriter
-    public async Task AddEmployeeAsync(string name)
-    {
-        var newScreenWriter = new ScreenWriter { Name = name };
-        await _screenWriterRepository.InsertAsync(newScreenWriter);
-    }
-
-    // Update an existing screenwriter
-    public async Task UpdateEmployeeAsync(int id, string newName)
-    {
-        var screenWriter = await _screenWriterRepository.GetByIdAsync(id);
-        if (screenWriter != null)
-        {
-            screenWriter.Name = newName;
-            await _screenWriterRepository.UpdateAsync(screenWriter);
+            _screenWriterRepository = screenWriterRepository ?? throw new ArgumentNullException(nameof(screenWriterRepository));
         }
-    }
-
-    // Delete a screenwriter by ID
-    public async Task DeleteEmployeeAsync(int id)
-    {
-        await _screenWriterRepository.DeleteAsync(id);
-    }
-    
-    public async Task<ScreenWriterDTO> GetEmployeeByIdAsync(int id)
-    {
-        // Fetch the actor from the repository by ID
-        var screenwriter = await _screenWriterRepository.GetByIdAsync(id);
-
-        if (screenwriter == null)
+        
+        public void SetEmployeeGUI(IEmployeeGUI employeeGUI)
         {
-            return null; // Return null if no actor is found
+            _employeeGUI = employeeGUI ?? throw new ArgumentNullException(nameof(employeeGUI));
+        }
+        
+        public async Task<List<ScreenWriterDTO>> GetScreenWritersAsync()
+        {
+            var screenwriters = await _screenWriterRepository.GetAllAsync();
+
+            return screenwriters.Select(screenWriter => new ScreenWriterDTO()
+            {
+                Id = screenWriter.Id,
+                Name = screenWriter.Name
+            }).ToList();
+        }
+        
+        public async Task AddScreenWriterAsync()
+        {
+            var name = _employeeGUI.GetNewEmployeeName();  
+            var newScreenWriter = new ScreenWriter { Name = name };
+            await _screenWriterRepository.InsertAsync(newScreenWriter);
         }
 
-        // Return the actor as an ActorDTO
-        return new ScreenWriterDTO()
+  
+        public async Task UpdateScreenWriterAsync()
         {
-            Id = screenwriter.Id,
-            Name = screenwriter.Name
-        };
+            int id = _employeeGUI.GetEmployeeId();
+            var newName = _employeeGUI.GetEmployeeName();  
+
+            var screenWriter = await _screenWriterRepository.GetByIdAsync(id);
+            /*if (screenWriter != null)
+            {
+                screenWriter.Name = newName;
+                await _screenWriterRepository.UpdateAsync(screenWriter);
+            }*/
+        }
+        
+        public async Task DeleteScreenWriterAsync()
+        {
+            int id = _employeeGUI.GetDeletingEmployeeId();  
+            await _screenWriterRepository.DeleteAsync(id);
+          
+        }
+        
+        public async Task<ScreenWriterDTO> GetScreenWriterByIdAsync()
+        {
+            int id = _employeeGUI.GetEmployeeId();
+            var screenWriter = await _screenWriterRepository.GetByIdAsync(id);
+            if (screenWriter == null) return null;
+
+            return new ScreenWriterDTO
+            {
+                Id = screenWriter.Id,
+                Name = screenWriter.Name
+            };
+        }
     }
 }

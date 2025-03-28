@@ -15,7 +15,7 @@ else
     <table class="table">
         <thead>
         <tr>
-            <th>ID</th>
+      
             <th>Title</th>
             <th>Year</th>
             <th>Category</th>
@@ -23,6 +23,7 @@ else
             <th>Director</th>
             <th>Screenwriter</th>
             <th>Actors</th>
+            <th>Photos</th> 
             <th>Actions</th>
         </tr>
         </thead>
@@ -30,7 +31,7 @@ else
         @foreach (var movie in movies)
         {
             <tr>
-                <td>@movie.Id</td>
+                
                 <td>@movie.Title</td>
                 <td>@movie.Year</td>
                 <td>@movie.Category</td>
@@ -38,6 +39,11 @@ else
                 <td>@movie.DirectorName</td>
                 <td>@movie.ScreenWriterName</td>
                 <td>@string.Join(", ", movie.ActorNames)</td>
+              
+                
+                <td>
+                    <button class="btn btn-info" @onclick="() => ShowPhotos(movie)">See Photos</button>
+                </td>
                 <td>
                     <button class="btn btn-warning" @onclick="() => EditMovie(movie)">Edit</button>
                     <button class="btn btn-danger" @onclick="() => DeleteMovie(movie.Id)">Delete</button>
@@ -47,6 +53,34 @@ else
         </tbody>
     </table>
 }
+
+<!-- Modal to display the images -->
+@if (selectedMovie != null)
+{
+    <div class="modal-overlay" @onclick="CloseModal">
+        <div class="modal">
+            <h3>@selectedMovie.Title - Photos</h3>
+            <div class="modal-body">
+                <div class="image-container">
+                    @if (selectedMovie.GetImageList().Any())
+                    {
+                        @foreach (var imageUrl in selectedMovie.GetImageList())
+                        {
+                            <p>@imageUrl</p> <!-- Debugging output -->
+                            <img src="@imageUrl" alt="Movie Image" class="movie-image"/>
+                        }
+                    }
+                    else
+                    {
+                        <p>No photos available.</p>
+                    }
+                </div>
+            </div>
+            <button class="btn btn-secondary" @onclick="CloseModal">Close</button>
+        </div>
+    </div>
+}
+
 
 <h3>@(editingMovieId == 0 ? "Add New Movie" : "Edit Movie")</h3>
 <div>
@@ -58,10 +92,14 @@ else
     <input type="number" @bind="newMovieScreenWriterId" placeholder="Enter screenwriter ID" />
     <input @bind="newMovieActorIds" placeholder="Enter actor IDs (comma-separated)" />
 
+
+    <input @bind="newMovieImageUrl1" placeholder="Enter first image URL" />
+    <input @bind="newMovieImageUrl2" placeholder="Enter second image URL" />
+    <input @bind="newMovieImageUrl3" placeholder="Enter third image URL" />
+
     @if (editingMovieId == 0)
     {
         <button class="btn btn-primary ml-3" @onclick="AddMovie">Add</button>
-
     }
     else
     {
@@ -72,6 +110,8 @@ else
 
 @code {
     private List<MovieDTO> movies = new();
+    private MovieDTO selectedMovie = null;
+
     private string newMovieTitle = string.Empty;
     private string newMovieCategory = string.Empty;
     private string newMovieType = string.Empty;
@@ -80,19 +120,29 @@ else
     private int newMovieScreenWriterId;
     private string newMovieActorIds = string.Empty;
 
-    private int editingMovieId = 0;
+    private string newMovieImageUrl1 = string.Empty;
+    private string newMovieImageUrl2 = string.Empty;
+    private string newMovieImageUrl3 = string.Empty;
 
+    private int editingMovieId = 0;
     private int deletingMovieId = 0;
 
     protected override async Task OnInitializedAsync()
     {
-        MoviePresenter.SetMovieGUI(this); // ✅ Assign the Blazor component instance to MoviePresenter
+        MoviePresenter.SetMovieGUI(this);
         await LoadMovies();
     }
 
     private async Task LoadMovies()
     {
         movies = await MoviePresenter.GetMoviesAsync();
+
+        foreach (var movie in movies)
+        {
+            movie.Photo1 = string.IsNullOrEmpty(movie.Photo1) ? "path_to_default_image.jpg" : movie.Photo1;
+            movie.Photo2 = string.IsNullOrEmpty(movie.Photo2) ? "path_to_default_image.jpg" : movie.Photo2;
+            movie.Photo3 = string.IsNullOrEmpty(movie.Photo3) ? "path_to_default_image.jpg" : movie.Photo3;
+        }
     }
 
     private async Task AddMovie()
@@ -112,11 +162,17 @@ else
         newMovieDirectorId = movie.DirectorId;
         newMovieScreenWriterId = movie.ScreenWriterId;
         newMovieActorIds = string.Join(", ", movie.ActorIds);
+
+        
+        var images = movie.GetImageList();
+        newMovieImageUrl1 = images.Count > 0 ? images[0] : string.Empty;
+        newMovieImageUrl2 = images.Count > 1 ? images[1] : string.Empty;
+        newMovieImageUrl3 = images.Count > 2 ? images[2] : string.Empty;
     }
 
     private async Task UpdateMovie()
     {
-        await MoviePresenter.UpdateMovieAsync(); // No parameters!
+        await MoviePresenter.UpdateMovieAsync();
         await LoadMovies();
         ResetFields();
     }
@@ -144,6 +200,21 @@ else
         newMovieDirectorId = 0;
         newMovieScreenWriterId = 0;
         newMovieActorIds = string.Empty;
+        newMovieImageUrl1 = string.Empty;
+        newMovieImageUrl2 = string.Empty;
+        newMovieImageUrl3 = string.Empty;
+    }
+
+  
+    private void ShowPhotos(MovieDTO movie)
+    {
+        selectedMovie = movie;
+    }
+
+  
+    private void CloseModal()
+    {
+        selectedMovie = null;
     }
 
     // IMovieGUI Implementation
@@ -163,4 +234,9 @@ else
             .Select(id => int.Parse(id.Trim()))
             .ToList();
     }
+
+ 
+    public string GetMoviePhoto1() => newMovieImageUrl1;
+    public string GetMoviePhoto2() => newMovieImageUrl2;
+    public string GetMoviePhoto3() => newMovieImageUrl3;
 }

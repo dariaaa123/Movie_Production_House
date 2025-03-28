@@ -11,7 +11,7 @@ public class Repository<T> : IRepository<T> where T : class
     public Repository(ProdHouseContext context)
     {
         _context = context;
-        _dbSet = context.Set<T>(); // Generic DbSet for any entity
+        _dbSet = context.Set<T>(); 
     }
 
     public async Task<List<T>> GetAllAsync()

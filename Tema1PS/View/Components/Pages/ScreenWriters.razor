@@ -1,12 +1,12 @@
 @page "/employees/screenwriters"
 @using Tema1PS.Presenter
 @inject ScreenWriterPresenter ScreenWriterPresenter
-
+@implements IEmployeeGUI
 @rendermode InteractiveServer
 
-<PageTitle>ScreenWriters</PageTitle>
+<PageTitle>Screenwriters</PageTitle>
 
-<h1>ScreenWriters</h1>
+<h1>Screenwriters</h1>
 
 @if (screenwriters == null)
 {
@@ -55,7 +55,7 @@ else
     </table>
 }
 
-<h3>Add New ScreenWriter</h3>
+<h3>Add New Screenwriter</h3>
 <div>
     <input @bind="newScreenWriterName" placeholder="Enter screenwriter name" />
     <button class="btn btn-primary" @onclick="AddScreenWriter">Add</button>
@@ -63,18 +63,28 @@ else
 
 @code {
     private List<ScreenWriterDTO> screenwriters = new();
+
+    private int screenWriterID = 0;
+    private string screenWriterName = string.Empty;
+    
     private string newScreenWriterName = string.Empty;
+    private int newScreenWriterId = 0;
+    
     private int editingScreenWriterId = 0;
     private string editingScreenWriterName = string.Empty;
 
+    private int deletingScreenWriterId = 0;
+    private string deletingScreenWriterName = string.Empty;
+
     protected override async Task OnInitializedAsync()
     {
-        await LoadScreenWriters();
+        ScreenWriterPresenter.SetEmployeeGUI(this); 
+        await LoadScreenWriters(); 
     }
 
     private async Task LoadScreenWriters()
     {
-        screenwriters = await ScreenWriterPresenter.GetEmployeesAsync();
+        screenwriters = await ScreenWriterPresenter.GetScreenWritersAsync();
     }
 
     private async Task AddScreenWriter()
@@ -82,8 +92,7 @@ else
         Console.WriteLine("Add button clicked");
         if (!string.IsNullOrWhiteSpace(newScreenWriterName))
         {
-            await ScreenWriterPresenter.AddEmployeeAsync(newScreenWriterName);
-            newScreenWriterName = string.Empty;
+            await ScreenWriterPresenter.AddScreenWriterAsync();
             await LoadScreenWriters();
         }
     }
@@ -96,12 +105,12 @@ else
 
     private async Task SaveEdit(int id)
     {
-        if (!string.IsNullOrWhiteSpace(editingScreenWriterName))
-        {
-            await ScreenWriterPresenter.UpdateEmployeeAsync(id, editingScreenWriterName);
-            editingScreenWriterId = 0;
-            await LoadScreenWriters();
-        }
+        screenWriterID = id; 
+        screenWriterName = editingScreenWriterName; 
+        
+        await ScreenWriterPresenter.UpdateScreenWriterAsync(); 
+        editingScreenWriterId = 0;
+        await LoadScreenWriters();
     }
 
     private void CancelEdit()
@@ -111,7 +120,17 @@ else
 
     private async Task DeleteScreenWriter(int id)
     {
-        await ScreenWriterPresenter.DeleteEmployeeAsync(id);
+        deletingScreenWriterId = id;
+        await ScreenWriterPresenter.DeleteScreenWriterAsync();
         await LoadScreenWriters();
     }
+    
+    
+    public int GetEmployeeId() => screenWriterID;
+    public string GetEmployeeName() => screenWriterName;
+    public string GetNewEmployeeName() => newScreenWriterName;
+    public int GetNewEmployeeId() => newScreenWriterId;
+    public int GetDeletingEmployeeId() => deletingScreenWriterId;
+    public string GetDeletingEmployeeName() => deletingScreenWriterName;
+
 }

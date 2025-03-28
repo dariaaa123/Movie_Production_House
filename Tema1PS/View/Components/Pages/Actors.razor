@@ -78,8 +78,8 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        ActorPresenter.SetEmployeeGUI(this); // Ensure this is set so that the presenter knows about the UI
-        await LoadActors(); // Load the actors when the page initializes
+        ActorPresenter.SetEmployeeGUI(this); 
+        await LoadActors(); 
     }
 
 
@@ -90,11 +90,10 @@ else
 
     private async Task AddActor()
     {
-        Console.WriteLine("Add button clicked");
+       // Console.WriteLine("Add button clicked");
         if (!string.IsNullOrWhiteSpace(newActorName))
         {
             await ActorPresenter.AddActorAsync();
-            //newActorName = string.Empty;
             await LoadActors();
         }
     }
@@ -103,17 +102,16 @@ else
     {
         editingActorId = id;
         editingActorName = name;
-            //await LoadActors();
     }
 
     private async Task SaveEdit(int id)
     {
-        actorID = id;  // Set the correct ID before calling the update
-        actorName = editingActorName;  // Set the correct new name
+        actorID = id; 
+        actorName = editingActorName; 
         
-        await ActorPresenter.UpdateActorAsync();  // Now it will read the correct data
-        editingActorId = 0;  // Reset editing state
-        await LoadActors();   // Refresh the actor list
+        await ActorPresenter.UpdateActorAsync(); 
+        editingActorId = 0;
+        await LoadActors();
     }
 
     private void CancelEdit()

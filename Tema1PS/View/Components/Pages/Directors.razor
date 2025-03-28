@@ -1,7 +1,7 @@
 @page "/employees/directors"
 @using Tema1PS.Presenter
 @inject DirectorPresenter DirectorPresenter
-
+@implements IEmployeeGUI
 @rendermode InteractiveServer
 
 <PageTitle>Directors</PageTitle>
@@ -63,18 +63,28 @@ else
 
 @code {
     private List<DirectorDTO> directors = new();
+
+    private int directorID = 0;
+    private string directorName = string.Empty;
+
     private string newDirectorName = string.Empty;
+    private int newDirectorId = 0;
+
     private int editingDirectorId = 0;
     private string editingDirectorName = string.Empty;
 
+    private int deletingDirectorId = 0;
+    private string deletingDirectorName = string.Empty;
+
     protected override async Task OnInitializedAsync()
     {
-        await LoadDirectors();
+        DirectorPresenter.SetEmployeeGUI(this); 
+        await LoadDirectors(); 
     }
 
     private async Task LoadDirectors()
     {
-        directors = await DirectorPresenter.GetEmployeesAsync();
+        directors = await DirectorPresenter.GetDirectorsAsync();
     }
 
     private async Task AddDirector()
@@ -82,8 +92,7 @@ else
         Console.WriteLine("Add button clicked");
         if (!string.IsNullOrWhiteSpace(newDirectorName))
         {
-            await DirectorPresenter.AddEmployeeAsync(newDirectorName);
-            newDirectorName = string.Empty;
+            await DirectorPresenter.AddDirectorAsync();
             await LoadDirectors();
         }
     }
@@ -96,12 +105,12 @@ else
 
     private async Task SaveEdit(int id)
     {
-        if (!string.IsNullOrWhiteSpace(editingDirectorName))
-        {
-            await DirectorPresenter.UpdateEmployeeAsync(id, editingDirectorName);
-            editingDirectorId = 0;
-            await LoadDirectors();
-        }
+        directorID = id; 
+        directorName = editingDirectorName; 
+        
+        await DirectorPresenter.UpdateDirectorAsync(); 
+        editingDirectorId = 0;
+        await LoadDirectors();
     }
 
     private void CancelEdit()
@@ -111,7 +120,15 @@ else
 
     private async Task DeleteDirector(int id)
     {
-        await DirectorPresenter.DeleteEmployeeAsync(id);
+        deletingDirectorId = id;
+        await DirectorPresenter.DeleteDirectorAsync();
         await LoadDirectors();
     }
+
+    public int GetEmployeeId() => directorID;
+    public string GetEmployeeName() => directorName;
+    public string GetNewEmployeeName() => newDirectorName;
+    public int GetNewEmployeeId() => newDirectorId;
+    public int GetDeletingEmployeeId() => deletingDirectorId;
+    public string GetDeletingEmployeeName() => deletingDirectorName;
 }

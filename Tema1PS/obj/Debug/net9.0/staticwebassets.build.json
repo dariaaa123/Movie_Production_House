@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "aqb6YbHTFnVAKSQmD3VqjRv2JmBjU6FqQufPmXjNbTw=",
+  "Hash": "ZkW3z+6tV8QI7Kt4Gi4V80Z6rBdRq76WOofNh9lGe/Y=",
   "Source": "Tema1PS",
   "BasePath": "_content/Tema1PS",
   "Mode": "Default",
@@ -374,6 +374,27 @@
       "OriginalItemSpec": "C:\\Users\\Daria\\Desktop\\PS\\Tema1PS\\Tema1PS\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css"
     },
     {
+      "Identity": "C:\\Users\\Daria\\Desktop\\PS\\Tema1PS\\Tema1PS\\obj\\Debug\\net9.0\\compressed\\heeqnmd1ca-7s3m5275za.gz",
+      "SourceId": "Tema1PS",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Daria\\Desktop\\PS\\Tema1PS\\Tema1PS\\obj\\Debug\\net9.0\\compressed\\",
+      "BasePath": "_content/Tema1PS",
+      "RelativePath": "modal#[.{fingerprint=7s3m5275za}]?.css.gz",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "C:\\Users\\Daria\\Desktop\\PS\\Tema1PS\\Tema1PS\\wwwroot\\modal.css",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "Fingerprint": "s9bdmxtgc3",
+      "Integrity": "UESd/MFdGUZ6Kh2jjp65zkRSc6p+Te8aXiRzvqVtWSs=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "C:\\Users\\Daria\\Desktop\\PS\\Tema1PS\\Tema1PS\\wwwroot\\modal.css"
+    },
+    {
       "Identity": "C:\\Users\\Daria\\Desktop\\PS\\Tema1PS\\Tema1PS\\obj\\Debug\\net9.0\\compressed\\hq4tsfwu1q-fsbi9cje9m.gz",
       "SourceId": "Tema1PS",
       "SourceType": "Discovered",
@@ -626,12 +647,12 @@
       "OriginalItemSpec": "C:\\Users\\Daria\\Desktop\\PS\\Tema1PS\\Tema1PS\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map"
     },
     {
-      "Identity": "C:\\Users\\Daria\\Desktop\\PS\\Tema1PS\\Tema1PS\\obj\\Debug\\net9.0\\compressed\\mgy63513xz-khy4lop6wu.gz",
+      "Identity": "C:\\Users\\Daria\\Desktop\\PS\\Tema1PS\\Tema1PS\\obj\\Debug\\net9.0\\compressed\\mgy63513xz-z7hlkf17qt.gz",
       "SourceId": "Tema1PS",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\Daria\\Desktop\\PS\\Tema1PS\\Tema1PS\\obj\\Debug\\net9.0\\compressed\\",
       "BasePath": "_content/Tema1PS",
-      "RelativePath": "app#[.{fingerprint=khy4lop6wu}]?.css.gz",
+      "RelativePath": "app#[.{fingerprint=z7hlkf17qt}]?.css.gz",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Alternative",
@@ -640,8 +661,8 @@
       "RelatedAsset": "C:\\Users\\Daria\\Desktop\\PS\\Tema1PS\\Tema1PS\\wwwroot\\app.css",
       "AssetTraitName": "Content-Encoding",
       "AssetTraitValue": "gzip",
-      "Fingerprint": "596e5mu3rg",
-      "Integrity": "KfTtGgOr4gFqWP6bDC3erwKnY0fchsCFGM8SFQeyGO0=",
+      "Fingerprint": "a8hqqwxti1",
+      "Integrity": "RvxJcsNg2/WYwDf40JevGTUq+S3D3r47izQfEzmnY8E=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "C:\\Users\\Daria\\Desktop\\PS\\Tema1PS\\Tema1PS\\wwwroot\\app.css"
@@ -1060,8 +1081,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "khy4lop6wu",
-      "Integrity": "aNPcLFwdCCGS2v1guSR64Htd4Ly5uclT7taAptnMPbs=",
+      "Fingerprint": "z7hlkf17qt",
+      "Integrity": "b0rQsUYY2i9U+/NcbJZ8v/nFiLAaqK3mI3YlhWHxTzw=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\app.css"
@@ -2010,17 +2031,38 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map"
+    },
+    {
+      "Identity": "C:\\Users\\Daria\\Desktop\\PS\\Tema1PS\\Tema1PS\\wwwroot\\modal.css",
+      "SourceId": "Tema1PS",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Daria\\Desktop\\PS\\Tema1PS\\Tema1PS\\wwwroot\\",
+      "BasePath": "_content/Tema1PS",
+      "RelativePath": "modal#[.{fingerprint}]?.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "7s3m5275za",
+      "Integrity": "WSY/o66qxLHfZr7JvEi43+SLNNb22KbBPzJumyx3zqM=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\modal.css"
     }
   ],
   "Endpoints": [
     {
       "Route": "app.css",
-      "AssetFile": "C:\\Users\\Daria\\Desktop\\PS\\Tema1PS\\Tema1PS\\obj\\Debug\\net9.0\\compressed\\mgy63513xz-khy4lop6wu.gz",
+      "AssetFile": "C:\\Users\\Daria\\Desktop\\PS\\Tema1PS\\Tema1PS\\obj\\Debug\\net9.0\\compressed\\mgy63513xz-z7hlkf17qt.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
           "Value": "gzip",
-          "Quality": "0.000636132316"
+          "Quality": "0.000564971751"
         }
       ],
       "ResponseHeaders": [
@@ -2030,15 +2072,15 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "1571"
+          "Value": "1769"
         },
         {
           "Name": "ETag",
-          "Value": "\"KfTtGgOr4gFqWP6bDC3erwKnY0fchsCFGM8SFQeyGO0=\""
+          "Value": "\"RvxJcsNg2/WYwDf40JevGTUq+S3D3r47izQfEzmnY8E=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 12 Mar 2025 22:02:03 GMT"
+          "Value": "Tue, 25 Mar 2025 12:16:20 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -2058,13 +2100,13 @@
         },
         {
           "Name": "ETag",
-          "Value": "W/\"aNPcLFwdCCGS2v1guSR64Htd4Ly5uclT7taAptnMPbs=\""
+          "Value": "W/\"b0rQsUYY2i9U+/NcbJZ8v/nFiLAaqK3mI3YlhWHxTzw=\""
         }
       ],
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-aNPcLFwdCCGS2v1guSR64Htd4Ly5uclT7taAptnMPbs="
+          "Value": "sha256-b0rQsUYY2i9U+/NcbJZ8v/nFiLAaqK3mI3YlhWHxTzw="
         }
       ]
     },
@@ -2079,7 +2121,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "2900"
+          "Value": "3477"
         },
         {
           "Name": "Content-Type",
@@ -2087,11 +2129,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"aNPcLFwdCCGS2v1guSR64Htd4Ly5uclT7taAptnMPbs=\""
+          "Value": "\"b0rQsUYY2i9U+/NcbJZ8v/nFiLAaqK3mI3YlhWHxTzw=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 12 Mar 2025 22:02:03 GMT"
+          "Value": "Tue, 25 Mar 2025 12:16:20 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -2101,13 +2143,13 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-aNPcLFwdCCGS2v1guSR64Htd4Ly5uclT7taAptnMPbs="
+          "Value": "sha256-b0rQsUYY2i9U+/NcbJZ8v/nFiLAaqK3mI3YlhWHxTzw="
         }
       ]
     },
     {
       "Route": "app.css.gz",
-      "AssetFile": "C:\\Users\\Daria\\Desktop\\PS\\Tema1PS\\Tema1PS\\obj\\Debug\\net9.0\\compressed\\mgy63513xz-khy4lop6wu.gz",
+      "AssetFile": "C:\\Users\\Daria\\Desktop\\PS\\Tema1PS\\Tema1PS\\obj\\Debug\\net9.0\\compressed\\mgy63513xz-z7hlkf17qt.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -2116,7 +2158,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "1571"
+          "Value": "1769"
         },
         {
           "Name": "Content-Type",
@@ -2124,11 +2166,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"KfTtGgOr4gFqWP6bDC3erwKnY0fchsCFGM8SFQeyGO0=\""
+          "Value": "\"RvxJcsNg2/WYwDf40JevGTUq+S3D3r47izQfEzmnY8E=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 12 Mar 2025 22:02:03 GMT"
+          "Value": "Tue, 25 Mar 2025 12:16:20 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -2146,18 +2188,18 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-KfTtGgOr4gFqWP6bDC3erwKnY0fchsCFGM8SFQeyGO0="
+          "Value": "sha256-RvxJcsNg2/WYwDf40JevGTUq+S3D3r47izQfEzmnY8E="
         }
       ]
     },
     {
-      "Route": "app.khy4lop6wu.css",
-      "AssetFile": "C:\\Users\\Daria\\Desktop\\PS\\Tema1PS\\Tema1PS\\obj\\Debug\\net9.0\\compressed\\mgy63513xz-khy4lop6wu.gz",
+      "Route": "app.z7hlkf17qt.css",
+      "AssetFile": "C:\\Users\\Daria\\Desktop\\PS\\Tema1PS\\Tema1PS\\obj\\Debug\\net9.0\\compressed\\mgy63513xz-z7hlkf17qt.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
           "Value": "gzip",
-          "Quality": "0.000636132316"
+          "Quality": "0.000564971751"
         }
       ],
       "ResponseHeaders": [
@@ -2167,15 +2209,15 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "1571"
+          "Value": "1769"
         },
         {
           "Name": "ETag",
-          "Value": "\"KfTtGgOr4gFqWP6bDC3erwKnY0fchsCFGM8SFQeyGO0=\""
+          "Value": "\"RvxJcsNg2/WYwDf40JevGTUq+S3D3r47izQfEzmnY8E=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 12 Mar 2025 22:02:03 GMT"
+          "Value": "Tue, 25 Mar 2025 12:16:20 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -2195,13 +2237,13 @@
         },
         {
           "Name": "ETag",
-          "Value": "W/\"aNPcLFwdCCGS2v1guSR64Htd4Ly5uclT7taAptnMPbs=\""
+          "Value": "W/\"b0rQsUYY2i9U+/NcbJZ8v/nFiLAaqK3mI3YlhWHxTzw=\""
         }
       ],
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "khy4lop6wu"
+          "Value": "z7hlkf17qt"
         },
         {
           "Name": "label",
@@ -2209,12 +2251,12 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-aNPcLFwdCCGS2v1guSR64Htd4Ly5uclT7taAptnMPbs="
+          "Value": "sha256-b0rQsUYY2i9U+/NcbJZ8v/nFiLAaqK3mI3YlhWHxTzw="
         }
       ]
     },
     {
-      "Route": "app.khy4lop6wu.css",
+      "Route": "app.z7hlkf17qt.css",
       "AssetFile": "C:\\Users\\Daria\\Desktop\\PS\\Tema1PS\\Tema1PS\\wwwroot\\app.css",
       "Selectors": [],
       "ResponseHeaders": [
@@ -2224,7 +2266,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "2900"
+          "Value": "3477"
         },
         {
           "Name": "Content-Type",
@@ -2232,11 +2274,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"aNPcLFwdCCGS2v1guSR64Htd4Ly5uclT7taAptnMPbs=\""
+          "Value": "\"b0rQsUYY2i9U+/NcbJZ8v/nFiLAaqK3mI3YlhWHxTzw=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 12 Mar 2025 22:02:03 GMT"
+          "Value": "Tue, 25 Mar 2025 12:16:20 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -2246,7 +2288,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "khy4lop6wu"
+          "Value": "z7hlkf17qt"
         },
         {
           "Name": "label",
@@ -2254,13 +2296,13 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-aNPcLFwdCCGS2v1guSR64Htd4Ly5uclT7taAptnMPbs="
+          "Value": "sha256-b0rQsUYY2i9U+/NcbJZ8v/nFiLAaqK3mI3YlhWHxTzw="
         }
       ]
     },
     {
-      "Route": "app.khy4lop6wu.css.gz",
-      "AssetFile": "C:\\Users\\Daria\\Desktop\\PS\\Tema1PS\\Tema1PS\\obj\\Debug\\net9.0\\compressed\\mgy63513xz-khy4lop6wu.gz",
+      "Route": "app.z7hlkf17qt.css.gz",
+      "AssetFile": "C:\\Users\\Daria\\Desktop\\PS\\Tema1PS\\Tema1PS\\obj\\Debug\\net9.0\\compressed\\mgy63513xz-z7hlkf17qt.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -2269,7 +2311,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "1571"
+          "Value": "1769"
         },
         {
           "Name": "Content-Type",
@@ -2277,11 +2319,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"KfTtGgOr4gFqWP6bDC3erwKnY0fchsCFGM8SFQeyGO0=\""
+          "Value": "\"RvxJcsNg2/WYwDf40JevGTUq+S3D3r47izQfEzmnY8E=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 12 Mar 2025 22:02:03 GMT"
+          "Value": "Tue, 25 Mar 2025 12:16:20 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -2299,7 +2341,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "khy4lop6wu"
+          "Value": "z7hlkf17qt"
         },
         {
           "Name": "label",
@@ -2307,7 +2349,7 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-KfTtGgOr4gFqWP6bDC3erwKnY0fchsCFGM8SFQeyGO0="
+          "Value": "sha256-RvxJcsNg2/WYwDf40JevGTUq+S3D3r47izQfEzmnY8E="
         }
       ]
     },
@@ -15502,6 +15544,304 @@
         {
           "Name": "integrity",
           "Value": "sha256-pf2AOjAOccWBEl9ORfBaaHo0t3lQUfisiqfIeMW9tqI="
+        }
+      ]
+    },
+    {
+      "Route": "modal.7s3m5275za.css",
+      "AssetFile": "C:\\Users\\Daria\\Desktop\\PS\\Tema1PS\\Tema1PS\\obj\\Debug\\net9.0\\compressed\\heeqnmd1ca-7s3m5275za.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.003184713376"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "313"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"UESd/MFdGUZ6Kh2jjp65zkRSc6p+Te8aXiRzvqVtWSs=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 28 Mar 2025 14:05:06 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"WSY/o66qxLHfZr7JvEi43+SLNNb22KbBPzJumyx3zqM=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "7s3m5275za"
+        },
+        {
+          "Name": "label",
+          "Value": "modal.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-WSY/o66qxLHfZr7JvEi43+SLNNb22KbBPzJumyx3zqM="
+        }
+      ]
+    },
+    {
+      "Route": "modal.7s3m5275za.css",
+      "AssetFile": "C:\\Users\\Daria\\Desktop\\PS\\Tema1PS\\Tema1PS\\wwwroot\\modal.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "615"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"WSY/o66qxLHfZr7JvEi43+SLNNb22KbBPzJumyx3zqM=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 28 Mar 2025 14:05:06 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "7s3m5275za"
+        },
+        {
+          "Name": "label",
+          "Value": "modal.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-WSY/o66qxLHfZr7JvEi43+SLNNb22KbBPzJumyx3zqM="
+        }
+      ]
+    },
+    {
+      "Route": "modal.7s3m5275za.css.gz",
+      "AssetFile": "C:\\Users\\Daria\\Desktop\\PS\\Tema1PS\\Tema1PS\\obj\\Debug\\net9.0\\compressed\\heeqnmd1ca-7s3m5275za.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "313"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"UESd/MFdGUZ6Kh2jjp65zkRSc6p+Te8aXiRzvqVtWSs=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 28 Mar 2025 14:05:06 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "7s3m5275za"
+        },
+        {
+          "Name": "label",
+          "Value": "modal.css.gz"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-UESd/MFdGUZ6Kh2jjp65zkRSc6p+Te8aXiRzvqVtWSs="
+        }
+      ]
+    },
+    {
+      "Route": "modal.css",
+      "AssetFile": "C:\\Users\\Daria\\Desktop\\PS\\Tema1PS\\Tema1PS\\obj\\Debug\\net9.0\\compressed\\heeqnmd1ca-7s3m5275za.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.003184713376"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "313"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"UESd/MFdGUZ6Kh2jjp65zkRSc6p+Te8aXiRzvqVtWSs=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 28 Mar 2025 14:05:06 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"WSY/o66qxLHfZr7JvEi43+SLNNb22KbBPzJumyx3zqM=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-WSY/o66qxLHfZr7JvEi43+SLNNb22KbBPzJumyx3zqM="
+        }
+      ]
+    },
+    {
+      "Route": "modal.css",
+      "AssetFile": "C:\\Users\\Daria\\Desktop\\PS\\Tema1PS\\Tema1PS\\wwwroot\\modal.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "615"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"WSY/o66qxLHfZr7JvEi43+SLNNb22KbBPzJumyx3zqM=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 28 Mar 2025 14:05:06 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-WSY/o66qxLHfZr7JvEi43+SLNNb22KbBPzJumyx3zqM="
+        }
+      ]
+    },
+    {
+      "Route": "modal.css.gz",
+      "AssetFile": "C:\\Users\\Daria\\Desktop\\PS\\Tema1PS\\Tema1PS\\obj\\Debug\\net9.0\\compressed\\heeqnmd1ca-7s3m5275za.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "313"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"UESd/MFdGUZ6Kh2jjp65zkRSc6p+Te8aXiRzvqVtWSs=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 28 Mar 2025 14:05:06 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-UESd/MFdGUZ6Kh2jjp65zkRSc6p+Te8aXiRzvqVtWSs="
         }
       ]
     },
