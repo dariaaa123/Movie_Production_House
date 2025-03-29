@@ -10,7 +10,7 @@ A **Blazor Server** web application for managing movies, directors, screenwriter
 - **MVP Architecture** – Clean separation between UI, logic and data for maintainability  
 
 ##  Technologies Used  
-- **Frontend**: Blazor Server (.NET 8), Razor Components  
+- **Frontend**: Blazor Server (.NET 9), Razor Components  
 - **Backend**: ASP.NET Core, C#  
 - **Architecture**: MVP (Model-View-Presenter)   
 - **Containerization**: Docker for running SQL Server in a container  
